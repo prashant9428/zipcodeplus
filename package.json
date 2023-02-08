@@ -4,33 +4,37 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "sayHello": "./index.js"
+    "sayHello": "./dist/index.js"
   },
   "scripts": {
     "commit": "cz",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js" 
+    "start": "node ./dist/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/prashant9428/zipcodeplus.git"
   },
-  "publishConfig": {
-    "registry": "registry=https://npm.pkg.github.com//zipcodeplus"
-  },
+  "publishConfig": {},
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/prashant9428/zipcodeplus/issues"
+    "url": "https://github.com/prashant9428/zipcodeplus/ "
   },
   "homepage": "https://github.com/prashant9428/zipcodeplus#readme",
   "dependencies": {
+    "@types/lodash": "^4.14.191",
+    "chalk": "^5.2.0",
     "express": "^4.17.2",
     "request": "^2.88.2",
     "request-promise": "^4.2.6"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.27.5",
     "semantic-release": "^19.0.2"
   },
   "config": {
