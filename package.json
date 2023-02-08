@@ -1,0 +1,41 @@
+{
+  "name": "zipcodeplus",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "sayHello": "./index.js"
+  },
+  "scripts": {
+    "commit": "cz",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prashant9428/zipcodeplus.git"
+  },
+  "publishConfig": {
+    "registry": "registry=https://npm.pkg.github.com//zipcodeplus"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prashant9428/zipcodeplus/issues"
+  },
+  "homepage": "https://github.com/prashant9428/zipcodeplus#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "semantic-release": "^19.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

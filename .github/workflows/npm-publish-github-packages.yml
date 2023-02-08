@@ -1,0 +1,142 @@
+
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: Node.js Package
+
+on:
+  push:
+    branches:
+      - development
+      - master
+      - staged
+    tags:
+      - '*'
+
+env:
+  ## Sets environment variable
+  master: 3    
+  tag: 0
+
+jobs:
+  build:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout branch "development"
+        if: github.ref == 'refs/heads/development'
+        uses: actions/checkout@v2
+        with:
+          ref: 'development'
+          fetch-depth: 0
+      - name: Checkout branch "master"
+        if: github.ref == 'refs/heads/master'
+        uses: actions/checkout@v2
+        with:
+          ref: 'master'
+          fetch-depth: 0
+      - name: Checkout branch "staged"
+        if: github.ref == 'refs/heads/staged'
+        uses: actions/checkout@v2
+        with:
+          ref: staged
+          fetch-depth: 0
+      - name: create a release
+        run: |
+          npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
+
+  getTag:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch "development"
+        if: github.ref == 'refs/heads/development'
+        uses: actions/checkout@v2
+        with:
+          ref: 'development'
+          fetch-depth: 0
+      - name: Checkout branch "master"
+        if: github.ref == 'refs/heads/master'
+        uses: actions/checkout@v2
+        with:
+          ref: 'master'
+          fetch-depth: 0
+      - name: Checkout branch "staged"
+        if: github.ref == 'refs/heads/staged'
+        uses: actions/checkout@v2
+        with:
+          ref: staged
+          fetch-depth: 0
+        
+      - name: get tag from master
+        if: github.ref == 'refs/heads/master'
+        run: |
+          echo "tag=$(git tag --contains ${{github.event.commits[github.event.commits.length-3].id}} --sort=-refname|head -n 1)" >> $GITHUB_ENV
+     
+      - name: get tag from others
+        if: github.ref != 'refs/heads/master'
+        run: |
+          echo "tag=$(git tag --contains ${{github.event.commits[github.event.commits.length-2].id}} --sort=-refname|head -n 1)" >> $GITHUB_ENV
+
+      - name: tag
+        run: echo ${{env.tag}}
+      - name: 'job id'
+        run: echo ${{github.run_id}}
+      - name: 'commit id'
+        run: echo ${{github.event.commits[0].id}}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      # - name: Login to Amazon ECR
+      #   id: login-ecr
+      #   uses: aws-actions/amazon-ecr-login@v1
+
+      # - name: Build, tag, and push the image to Amazon ECR
+      #   id: build-image
+      #   env:
+      #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #     ECR_REPOSITORY: test-package
+      #     IMAGE_TAG: latest-image
+      #     GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      #   run: |
+      #     echo $ECR_REGISTRY
+      #     # Build a docker container and push it to ECR 
+      #     docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f dockerFile --build-arg tag=${{steps.tag.outputs.tag}}
+      #     echo "Pushing image to ECR..."
+      #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+      #     echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      # - name: Download current ECS task definition
+      #   run: |
+      #     aws ecs describe-task-definition --task-definition test-package --query taskDefinition > task-definition.json
+      #     cat task-definition.json
+      # - name: Render new ECS task definition
+      #   id: render-task-definition
+      #   uses: aws-actions/amazon-ecs-render-task-definition@v1
+      #   with:
+      #     task-definition: task-definition.json
+      #     container-name: test-package
+      #     image: ${{ steps.build-image.outputs.image }}
+
+      # - name: Deploy Amazon ECS task definition
+        # uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        # with:
+        #   task-definition: ${{ steps.render-task-definition.outputs.task-definition }}
+        #   service: test-package
+        #   cluster: ecs-sematic-deploy
+        #   wait-for-service-stability: true
+      # - name: docker build
+      #   run: |
+      #     ls -la
+      #     docker build . -t test-package -f dockerFile --build-arg tag=${{steps.tag.output.tag}}
+      #     docker tag test-package:latest 964412869874.dkr.ecr.us-east-1.amazonaws.com/test-package:latest
+      #     docker push 964412869874.dkr.ecr.us-east-1.amazonaws.com/test-package:latest
+      
+  
