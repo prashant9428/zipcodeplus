@@ -25,20 +25,20 @@ function isValidZipcode(
 }
 
 /**
- * 
- * @param countryCode 
- * @returns 
+ *
+ * @param countryCode
+ * @returns
  */
 function isValidCountry(countryCode: string): boolean {
   // check if pincode is present in country config
   const isCountry: any = findKey(config.countries, ["code", countryCode]);
   if (!isCountry) {
-   return false
+    return false;
   }
   return true;
 }
 
 export default {
   isValidZipcode,
-  isValidCountry
+  isValidCountry,
 };

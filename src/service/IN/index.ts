@@ -2,9 +2,9 @@ import rp from "request-promise";
 import config from "../../config/mapping";
 
 /**
- * 
- * @param zipcode 
- * @returns 
+ *
+ * @param zipcode
+ * @returns
  */
 function getIndianPincodes(zipcode: string | number) {
   return new Promise(function (resolve, reject) {
@@ -24,6 +24,4 @@ function getIndianPincodes(zipcode: string | number) {
   });
 }
 
-export {
-  getIndianPincodes
-}
+export { getIndianPincodes };

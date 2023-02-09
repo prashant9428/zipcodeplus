@@ -1,6 +1,3 @@
-import { isValidZipcode,zipcode } from './main'
+import { isValidZipcode, zipcode } from "./main";
 
-export {
-    isValidZipcode,
-    zipcode
-}
+export { isValidZipcode, zipcode };
