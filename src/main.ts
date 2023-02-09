@@ -30,7 +30,13 @@ async function zipcode(countryCode: string, zip: number | string) {
     if (!validation.isValidZipcode(countryCode, zip)) {
       throw new Error(`${countryCode} ${config.log.INVALID}.`);
     }
-    return await getIndianPincodes(zip);
+    const zipDetails:any =  await getIndianPincodes(zip);
+
+    if(zipDetails[0].Status != "Success") {
+      return null
+    }
+    
+    return zipDetails[0]["PostOffice"][0]
   } catch (error) {
     return error;
   }
