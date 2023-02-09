@@ -1,6 +1,7 @@
 interface Config {
     countries: Object[],
-    log: {NOT_AVAILABLE: string};
+    log: {NOT_AVAILABLE: string, INVALID: string};
+    pincodeUrl: string
   }
 
 const config: Config = {
@@ -27,8 +28,10 @@ const config: Config = {
         },
     ],
     log:{
-        "NOT_AVAILABLE":"country code is currenlty not available."
+        "NOT_AVAILABLE":"country code is currenlty not available.",
+        "INVALID": "Provide pincode is invalid."
     },
+    pincodeUrl: "https://api.postalpincode.in/pincode/"
 }
 
 export default config;

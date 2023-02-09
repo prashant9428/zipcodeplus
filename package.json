@@ -1,15 +1,19 @@
 {
   "name": "zipcodeplus",
-  "version": "1.0.1",
+  "version": "1.0.7",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "files": [
+    "lib/**/*"
+  ],
   "bin": {
-    "sayHello": "./dist/index.js"
+    "sayHello": "./lib/index.js"
   },
   "scripts": {
+    "build": "tsc",
     "commit": "cz",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./dist/index.js"
+    "start": "node ./lib/index.js"
   },
   "repository": {
     "type": "git",
@@ -24,9 +28,8 @@
   "homepage": "https://github.com/prashant9428/zipcodeplus#readme",
   "dependencies": {
     "@types/lodash": "^4.14.191",
-    "chalk": "^5.2.0",
-    "express": "^4.17.2",
-    "request": "^2.88.2",
+    "@types/request": "^2.48.8",
+    "@types/request-promise": "^4.1.48",
     "request-promise": "^4.2.6"
   },
   "devDependencies": {
