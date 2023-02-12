@@ -1,7 +1,9 @@
 interface Config {
   countries: Object[];
-  log: { NOT_AVAILABLE: string; INVALID: string };
-  pincodeUrl: string;
+  log: { NOT_AVAILABLE: string; INVALID: string , NOT_FOUND:string};
+  status:{INVALID_REQUEST: number, SUCCESS: number, NOT_FOUND: number},
+  IndianPincodeUrl: string;
+  zipcodeUrl: string;
 }
 
 const config: Config = {
@@ -29,10 +31,18 @@ const config: Config = {
     },
   ],
   log: {
-    NOT_AVAILABLE: "country code is currenlty not available.",
-    INVALID: "Provide pincode is invalid.",
+    NOT_AVAILABLE: "INVALID COUNTRY",
+    INVALID: "INVALID ZIPCODE",
+    NOT_FOUND: "NOT FOUND"
   },
-  pincodeUrl: "https://api.postalpincode.in/pincode/",
+  status:{
+    "INVALID_REQUEST": 400,
+    "SUCCESS":200,
+    "NOT_FOUND":404
+
+  },
+  IndianPincodeUrl: "https://api.postalpincode.in/pincode/",
+  zipcodeUrl: "https://o8ld2ofl6d.execute-api.ap-south-1.amazonaws.com/v1/zipcode"
 };
 
 export default config;

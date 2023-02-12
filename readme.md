@@ -1,5 +1,5 @@
 # Zipcodeplus :rocket:
-Zipcode plus is a zipcode details provider accross world,we aim to cover all the countries but currently we are only serving for ***india***.
+Zipcode plus is a zipcode details provider accross world,we aim to cover all the countries but currently we are only serving for ***india*** and ***USA***.
 
 ### npm
 
@@ -12,23 +12,24 @@ npm install zipcodeplus
 > ```tsx
 > const {zipcode} = require("zipcode")
 >
-> async function getPincode(){
+> async function getZipcode(){
 >    try {
->      const country =  await zipcode("IN",482001)
->      console.log("country",JSON.stringify(country))
+>      const zip =  await zipcode("US",79357)
+>      console.log("zip",JSON.stringify(country))
 >    } catch (error) {
 >        console.log(error)
 >    }
 > }
-> getPincode()
+> getZipcode()
 > ```
+
 ### isValidZipcode(countryCode: string, zipcode: string|number)
 > ```tsx
 > const {isValidZipcode} = require("zipcode")
 > console.log(isValidZipcode("IN",582001))
 > ```
 
-## Availabe countries
+## Available countries
 
 | countryCode    | case sensitive |
 | -------------- | -------------- |
@@ -37,3 +38,14 @@ npm install zipcodeplus
 | UK             | True           |
 | AU             | True           |
 | CA             | True           |
+
+
+## status code
+
+| statusCode     | Message        |
+| -------------- | -------------- |
+| 200            | SUCCESS        |
+| 400            | INVALID_REQUEST|           
+| 404            | NOT_FOUND      |
+
+

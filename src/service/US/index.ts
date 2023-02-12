@@ -6,16 +6,21 @@ import config from "../../config/mapping";
  * @param zipcode
  * @returns
  */
-function getIndianPincodes(zipcode: string | number) {
+function getUsaZipcode(zipcode: string | number) {
   return new Promise(function (resolve, reject) {
     const options = {
-      uri: `${config.IndianPincodeUrl}/${zipcode}`,
+      uri: `${config.zipcodeUrl}`,
+      body: {
+        "countrycode": "US",
+        "zip": zipcode
+      },
+      method: "POST",
       json: true, // Automatically parses the JSON string in the response
     };
 
     rp(options)
-      .then(function (pincode: object) {
-        resolve(pincode);
+      .then(function (zipcode: object) {
+        resolve(zipcode);
       })
       .catch(function (err: any) {
         // API call failed...
@@ -24,4 +29,4 @@ function getIndianPincodes(zipcode: string | number) {
   });
 }
 
-export { getIndianPincodes };
+export { getUsaZipcode };
