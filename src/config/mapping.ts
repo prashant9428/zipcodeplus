@@ -1,9 +1,10 @@
 interface Config {
   countries: Object[];
-  log: { NOT_AVAILABLE: string; INVALID: string , NOT_FOUND:string};
-  status:{INVALID_REQUEST: number, SUCCESS: number, NOT_FOUND: number},
+  log: { NOT_AVAILABLE: string; INVALID: string; NOT_FOUND: string };
+  status: { INVALID_REQUEST: number; SUCCESS: number; NOT_FOUND: number };
   IndianPincodeUrl: string;
   zipcodeUrl: string;
+  NigeriaPincodeUrl: string;
 }
 
 const config: Config = {
@@ -29,20 +30,26 @@ const config: Config = {
       code: "IN",
       pattern: /^\d{6}$/,
     },
+    {
+      code: "NGA",
+      pattern: /^\d{6}$/,
+    },
   ],
   log: {
     NOT_AVAILABLE: "INVALID COUNTRY",
     INVALID: "INVALID ZIPCODE",
-    NOT_FOUND: "NOT FOUND"
+    NOT_FOUND: "NOT FOUND",
   },
-  status:{
-    "INVALID_REQUEST": 400,
-    "SUCCESS":200,
-    "NOT_FOUND":404
-
+  status: {
+    INVALID_REQUEST: 400,
+    SUCCESS: 200,
+    NOT_FOUND: 404,
   },
   IndianPincodeUrl: "https://api.postalpincode.in/pincode/",
-  zipcodeUrl: "https://o8ld2ofl6d.execute-api.ap-south-1.amazonaws.com/v1/zipcode"
+  zipcodeUrl:
+    "https://o8ld2ofl6d.execute-api.ap-south-1.amazonaws.com/v1/zipcode",
+  NigeriaPincodeUrl:
+    "https://postalcode.onrender.com/",
 };
 
 export default config;

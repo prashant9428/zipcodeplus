@@ -1,15 +1,15 @@
 import rp from "request-promise";
-import config from "../../config/mapping.ts";
+import config from "../../config/mapping";
 
 /**
  *
  * @param zipcode
  * @returns
  */
-function getIndianPincodes(zipcode: string | number) {
+function getNigeriaPincodes(zipcode: string | number) {
   return new Promise((resolve, reject) => {
     const options = {
-      uri: `${config.IndianPincodeUrl}/${zipcode}`,
+      uri: `${config.NigeriaPincodeUrl}/${zipcode}`,
       json: true, // Automatically parses the JSON string in the response
     };
 
@@ -24,4 +24,4 @@ function getIndianPincodes(zipcode: string | number) {
   });
 }
 
-export default { getIndianPincodes };
+export default { getNigeriaPincodes };

@@ -2,6 +2,7 @@ import validation from "./validation";
 import config from "./config/mapping";
 import { getIndianPincodes } from "./service/IN";
 import { getUsaZipcode } from "./service/US";
+import { getNigeriaPincodes } from "./service/NGA";
 import { success, failed } from "./response";
 /**
  *
@@ -47,6 +48,13 @@ async function zipcode(countryCode: string, zip: number | string) {
         if (usZipDetails.statusId != "1")
           return success(config.status.NOT_FOUND, null);
         return success(config.status.SUCCESS, usZipDetails.resbody);
+        break;
+      case "NGA":
+        const ngZipDetails: any = await getNigeriaPincodes(zip);
+        if (ngZipDetails.Status != "Success")
+          return success(config.status.NOT_FOUND, null);
+
+        return success(config.status.SUCCESS, ngZipDetails);
         break;
       default:
         return success(config.status.NOT_FOUND, null);
