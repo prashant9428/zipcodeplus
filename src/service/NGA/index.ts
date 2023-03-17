@@ -24,4 +24,4 @@ function getNigeriaPincodes(zipcode: string | number) {
   });
 }
 
-export default { getNigeriaPincodes };
+export default getNigeriaPincodes;

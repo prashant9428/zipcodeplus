@@ -1,5 +1,5 @@
 import rp from "request-promise";
-import config from "../../config/mapping.ts";
+import config from "../../config/mapping";
 
 /**
  *
@@ -24,4 +24,4 @@ function getIndianPincodes(zipcode: string | number) {
   });
 }
 
-export default { getIndianPincodes };
+export default getIndianPincodes;

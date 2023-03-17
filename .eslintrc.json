@@ -7,8 +7,9 @@
       "no-console": ["error", { "allow": ["log"] }],
       "func-names": ["error", "never"],
       "import/prefer-default-export": [
-        ( "off" | "warn" | "error" ),
-      { "target": "single" | "any" } // default is "single"
-    ]
+       "error",
+      { "target":  "any" } // default is "single"
+    ],
+    "import/extensions": ["ts", "never" ]
     }
   }

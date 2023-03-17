@@ -1,8 +1,8 @@
 import validation from "./validation";
 import config from "./config/mapping";
-import { getIndianPincodes } from "./service/IN";
-import { getUsaZipcode } from "./service/US";
-import { getNigeriaPincodes } from "./service/NGA";
+import getIndianPincodes from "./service/IN";
+import getUsaZipcode from "./service/US";
+import getNigeriaPincodes from "./service/NGA";
 import { success, failed } from "./response";
 /**
  *

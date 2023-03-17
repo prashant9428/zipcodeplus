@@ -29,4 +29,4 @@ function getUsaZipcode(zipcode: string | number) {
   });
 }
 
-export default { getUsaZipcode };
+export default getUsaZipcode;
