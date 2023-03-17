@@ -54,7 +54,7 @@ async function zipcode(countryCode: string, zip: number | string) {
         if (ngZipDetails.Status != "Success")
           return success(config.status.NOT_FOUND, null);
 
-        return success(config.status.SUCCESS, ngZipDetails);
+        return success(config.status.SUCCESS, ngZipDetails.PostalCode);
         break;
       default:
         return success(config.status.NOT_FOUND, null);
