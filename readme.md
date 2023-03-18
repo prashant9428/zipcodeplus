@@ -11,7 +11,7 @@ npm install zipcodeplus
 ### zipcode(countryCode: string, zipcode: string|number)
 
 > ```tsx
-> const {zipcode} = require("zipcode")
+> const {zipcode} = require("zipcodeplus")
 >
 > async function getZipcode(){
 >    try {
@@ -41,7 +41,7 @@ npm install zipcodeplus
 ### isValidZipcode(countryCode: string, zipcode: string|number)
 
 > ```tsx
-> const {isValidZipcode} = require("zipcode")
+> const {isValidZipcode} = require("zipcodeplus")
 > console.log(isValidZipcode("IN",582001))
 > ```
 
