@@ -3,7 +3,13 @@
     "parserOptions": { "ecmaVersion": 2015 },
     "parser": "babel-eslint",
     "rules":{
+      "quotes": ["error", "double"],
       "no-console": ["error", { "allow": ["log"] }],
-      "func-names": ["error", "never"]
+      "func-names": ["error", "never"],
+      "import/prefer-default-export": [
+       "error",
+      { "target":  "any" } // default is "single"
+    ],
+    "import/extensions": ["ts", "never" ]
     }
   }

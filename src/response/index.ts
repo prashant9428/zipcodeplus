@@ -19,7 +19,7 @@ const success = (statusId: number, message: string | Object | number | any) => (
  */
 const failed = (statusId: number, message: string | Object | number) => ({
   status: statusId || 0,
-  message: message,
+  message,
   zip: null,
 });
 

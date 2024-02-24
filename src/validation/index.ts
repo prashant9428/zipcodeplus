@@ -10,7 +10,7 @@ import findKey from "lodash/findKey";
 
 function isValidZipcode(
   countryCode: string,
-  zipcode: string | number
+  zipcode: string | number,
 ): boolean {
   // check if pincode is present in country config
   const isCountry: any = findKey(config.countries, ["code", countryCode]);
